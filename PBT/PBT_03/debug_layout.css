@@ -1,0 +1,10 @@
+.container { width: 960px; margin: 0 auto; border: 2px solid black; overflow: hidden; }
+.sidebar, .content { float: left; border: 1px solid #ccc; padding: 20px; }
+
+
+.box-border .sidebar, .box-border .content { box-sizing: border-box; }
+.box-border .sidebar { width: 300px; }
+.box-border .content { width: 660px; }
+
+.manual-width .sidebar { width: 258px; }
+.manual-width .content { width: 598px; }

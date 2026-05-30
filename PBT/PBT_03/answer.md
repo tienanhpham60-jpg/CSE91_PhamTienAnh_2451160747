@@ -200,3 +200,63 @@ Thay đổi thứ tự rules:
 Kết quả có đổi không? KHÔNG đổi (ngoại trừ trường hợp 2 rule có cùng độ đặc hiệu).
 
 Giải thích: Nếu hai rule có cùng độ đặc hiệu (ví dụ .text và .highlight), lúc này trình duyệt mới áp dụng quy tắc "cái nào đứng sau cùng sẽ đè lên cái trước". Nhưng với các rule có độ đặc hiệu khác nhau, trình duyệt luôn chọn rule "mạnh nhất" bất kể nó nằm ở vị trí nào trong file CSS.
+
+
+
+
+
+# Câu C1: Debug CSS Layout
+1. Tinh chieu rong thuc te (content-box):
+
+Sidebar: 300px (width) + 20px2 (padding) + 1px2 (border) = 342px.
+
+Content: 660px (width) + 30px2 (padding) + 1px2 (border) = 722px.
+
+2. Tai sao layout bi vo?
+
+Tong chieu rong thuc te cua 2 phan tu la: 342px + 722px = 1064px.
+
+Vi 1064px lon hon kich thuoc khung chua (960px), nen trinh duyet khong the dat chung tren cung mot hang, dan den phan Content bi day xuong dong duoi.
+
+3. Hai cach sua:
+
+Cach 1: Them thuoc tinh "box-sizing: border-box;" vao ca Sidebar va Content. Khi do, padding va border se nam ben trong kich thuoc width, tong chieu rong se khop dung 960px.
+
+Cach 2: Khong dung border-box, ban phai giam gia tri width cua tung phan tu di dung bang phan padding va border da them vao:
+
+Sidebar width moi: 300px - 40px - 2px = 258px.
+
+Content width moi: 660px - 60px - 2px = 598px.
+
+# Câu C2: Cascade Puzzle - Ket qua chi tiet
+1. San pham A (h2.title.highlight)
+
+Font-size: 20px
+
+Color: green
+
+Giai thich: Font-size lay tu selector .card .title (20px). Mau green duoc ap dung vi co thuoc tinh !important trong class .highlight, no uu tien cao nhat.
+
+2. Mo ta san pham A (p trong card featured)
+
+Font-size: 14px
+
+Color: #333
+
+Giai thich: Font-size ke thua 14px tu .container. Mau color la #333 vi no ke thua (inherit) tu body (vi .card p khong xac dinh mau cu the).
+
+3. San pham B (h2.title)
+
+Font-size: 20px
+
+Color: blue
+
+Giai thich: Font-size lay tu .card .title (20px). Color lay tu class .card (blue).
+
+4. Mo ta san pham B (p.highlight)
+
+Font-size: 14px
+
+Color: green
+
+Giai thich: Font-size ke thua 14px tu .container. Mau color la green nho thuoc tinh !important trong class .highlight.
