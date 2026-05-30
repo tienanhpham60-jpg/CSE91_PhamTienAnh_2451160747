@@ -89,15 +89,15 @@ PHẦN C — SỬA LỖI MÃ NGUỒN (DEBUG)
 
 Danh sách các lỗi phát hiện trong file HTML cũ và cách khắc phục:
 
-Lỗi 1 ở dòng 1: Khai báo <!DOCTYPE> viết thiếu chữ html -> Sửa lại thành <!DOCTYPE html>.
-Lỗi 2 ở dòng 1: Thẻ html mở đầu trang web thiếu thuộc tính ngôn ngữ -> Sửa lại thành <html lang="vi">.
-Lỗi 3 ở dòng 2: Thẻ <title> bị quên không đóng thẻ -> Thêm </title> vào ngay sau chữ Trang web.
-Lỗi 4 ở dòng 3: Thuộc tính mã hóa kí tự charset viết sai chuẩn utf8 -> Sửa lại thành charset="UTF-8".
-Lỗi 5 ở dòng 3: Thiếu thẻ meta viewport để hiển thị responsive trên di động -> Thêm <meta name="viewport" content="width=device-width, initial-scale=1.0">.
-Lỗi 6 ở dòng 4: Thẻ tiêu đề chính <h1> viết nhầm thẻ đóng thành thẻ mở <h1> -> Sửa lại thành </h1> ở cuối dòng.
-Lỗi 7 ở dòng 8: Thẻ liên kết <a> của chữ Trang chủ viết sai thẻ đóng thành thẻ mở <a> -> Sửa lại thành </a>.
-Lỗi 8 ở dòng 17: Thẻ <img> thiếu thuộc tính alt bắt buộc và giá trị src không nằm trong dấu nháy kép -> Sửa lại thành <img src="iphone.jpg" alt="iPhone 16 Pro">.
-Lỗi 9 ở dòng 19: Thẻ <b> và thẻ <p> đang bị đóng lồng chéo nhau sai quy tắc -> Sửa lại thứ tự thành <b>25.990.000đ</b></p>.
-Lỗi 10 ở dòng 25: Hàng đầu tiên của bảng chứa tiêu đề nhưng lại lạm dụng thẻ dữ liệu td -> Sửa các thẻ td đó thành thẻ th và bọc trong khối thead.
-Lỗi 11 ở dòng 37: Trang web xuất hiện tới hai thẻ <main> trong khi quy chuẩn chỉ cho phép một thẻ độc nhất, đồng thời gắn sai ngữ nghĩa cho sidebar -> Bỏ thẻ <main> thứ hai đi và thay bằng thẻ <aside>.
-Lỗi 12 ở dòng 42: Thẻ <p> ở phần chân trang footer bị quên không đóng -> Thêm thẻ đóng </p> vào sau cụm từ Copyright 2026.
+Lỗi 1: Dòng 1 — Khai báo <!DOCTYPE> viết thiếu từ khóa html cấu trúc hệ thống — Thay đổi thành <!DOCTYPE html>
+Lỗi 2: Dòng 1 — Thẻ <html> mở đầu thiếu thuộc tính ngôn ngữ hỗ trợ SEO — Sửa thành <html lang="vi">
+Lỗi 3: Dòng 2 — Thẻ <title> bị bỏ quên, thiếu thẻ đóng hỏng cấu trúc phân tích head — Thêm thẻ đóng để thành <title>Trang web</title>
+Lỗi 4: Dòng 3 — Giá trị thuộc tính charset của thẻ meta viết sai định dạng utf8 — Đổi utf8 thành utf-8 chuẩn hóa
+Lỗi 5: Dòng 3 — Thiếu thẻ meta viewport cấu hình hiển thị responsive co giãn giao diện di động — Bổ sung thẻ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+Lỗi 6: Dòng 4 — Thẻ tiêu đề chính <h1> viết sai cú pháp thẻ đóng thành thẻ mở <h1> — Sửa thẻ đóng ở cuối dòng thành </h1>
+Lỗi 7: Dòng 8 — Thẻ liên kết <a> của từ Trang chủ viết sai cú pháp thẻ đóng thiếu dấu gạch chéo — Đổi thẻ mở <a> ở cuối cụm từ thành thẻ đóng </a>
+Lỗi 8: Dòng 17 — Thẻ hình ảnh <img> thiếu thuộc tính mô tả alt và giá trị src không bọc nháy kép — Sửa thành <img src="iphone.jpg" alt="iPhone 16 Pro">
+Lỗi 9: Dòng 19 — Thẻ nhấn mạnh <b> và thẻ đoạn văn <p> bị đóng lồng chéo, sai thứ tự phân cấp DOM — Sửa lại trật tự đóng thẻ thành <b>25.990.000đ</b></p>
+Lỗi 10: Dòng 25 — Bảng dữ liệu lạm dụng toàn bộ thẻ dữ liệu td ở hàng đầu tiên thay vì tiêu đề cột — Đổi các thẻ td hàng đầu thành thẻ th và bọc trong khối thead
+Lỗi 11: Dòng 37 — Sử dụng hai thẻ <main> trên cùng một trang và gắn sai ngữ nghĩa cho vùng thông tin phụ sidebar — Chỉ giữ lại một thẻ <main> duy nhất, chuyển khối dữ liệu phụ thành thẻ <aside>
+Lỗi 12: Dòng 42 — Thẻ đoạn văn <p> trong khu vực chân trang footer bị bỏ quên không có thẻ đóng — Thêm thẻ đóng </p> vào sau cụm từ Copyright 2026
