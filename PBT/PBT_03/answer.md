@@ -1,5 +1,5 @@
-PHẦN A — KIỂM TRA ĐỌC HIỂU (CSS & BOX MODEL)
-Câu A1 — 3 Cách nhúng CSS
+## PHẦN A — KIỂM TRA ĐỌC HIỂU (CSS & BOX MODEL)
+# Câu A1 — 3 Cách nhúng CSS
 1 Cách nhúng Inline (Trực tiếp trên thẻ)
 Ví dụ code
 
@@ -58,7 +58,7 @@ Trả lời câu hỏi thêm về độ ưu tiên
 Nếu cùng áp dụng cả 3 cách trên vào một phần tử, cách nhúng Inline sẽ thắng
 Giải thích: Theo quy tắc tính độ ưu tiên, trình duyệt sẽ ưu tiên mã nằm gần phần tử nhất. Inline nằm ngay trong thẻ HTML nên có trọng số cao hơn Internal và External ở trên đầu trang hay ở file ngoài
 
-Câu A2 — CSS Selectors — Dự đoán kết quả
+# Câu A2 — CSS Selectors — Dự đoán kết quả
 Dựa vào cấu trúc cây thư mục HTML được cung cấp, dưới đây là kết quả chọn của từng selector
 
 1 selector h1
@@ -85,7 +85,7 @@ Chọn: Thẻ liên kết có đường dẫn trỏ về trang chủ, cụ thể
 8 selector .top-bar.dark h1
 Chọn: Thẻ tiêu đề h1 nằm trong khối header có chứa cả hai class top-bar và dark, cụ thể là chữ ShopTLU
 
-Câu A3 — Box Model — Tính toán kích thước
+# Câu A3 — Box Model — Tính toán kích thước
 1 Trường hợp 1: áp dụng thuộc tính content-box
 Chiều rộng hiển thị thực tế trên màn hình = width + padding trái + padding phải + border trái + border phải = 400 + 20 + 20 + 5 + 5 = 450px
 Không gian chiếm dụng trên bố cục trang = Chiều rộng hiển thị + margin trái + margin phải = 450 + 10 + 10 = 470px
@@ -102,7 +102,7 @@ Giải thích tại sao không phải 65px: Trong CSS, khi hai khối nằm xế
 Giải bài tập nâng cao
 Nếu box-a có lề dưới âm -10px và box-b có lề trên dương 40px, quy tắc tính lề sập lúc này sẽ bằng tổng đại số của lề dương lớn nhất cộng với lề âm. Khoảng cách thực tế giữa hai khối sẽ là: 40px + (-10px) = 30px
 
-Câu A4 — Specificity (Độ ưu tiên)
+# Câu A4 — Specificity (Độ ưu tiên)
 1 Điểm số độ ưu tiên Specificity Score (a, b, c) của từng dòng lệnh
 Rule A (p): Điểm số là (0, 0, 1) vì chỉ có 1 selector thẻ loại phần tử
 Rule B (.price): Điểm số là (0, 1, 0) vì sở hữu 1 selector dạng class
@@ -118,3 +118,50 @@ Nếu thêm đoạn mã style="color: orange;" trực tiếp vào thẻ HTML, ph
 
 4 Trường hợp bổ sung từ khóa !important vào Rule A
 Nếu dòng Rule A được gắn thêm từ khóa !important, phần tử sẽ chuyển sang hiển thị màu đen (black). Giải thích là vì từ khóa !important sẽ phá vỡ mọi quy tắc tính điểm thông thường, nó ép trình duyệt phải ưu tiên dòng lệnh chứa nó lên mức cao nhất, đè bẹp cả thuộc tính inline style hay selector dạng id
+
+
+## PHẦN B — THỰC HÀNH CODE
+
+# Bài B1 — Liệt kê các loại selector sử dụng trong file CSS
+Để hoàn thành trang Profile, hệ thống mã nguồn đã áp dụng đầy đủ 5 loại bộ chọn khác nhau bao gồm:
+1. Selector loại phần tử (Element selector): body, table, footer (áp dụng thuộc tính chung cho toàn bộ thẻ)
+2. Selector định danh (ID selector): #main-header, #profile-avatar (gắn thuộc tính cho phần tử duy nhất)
+3. Selector lớp (Class selector): .nav-link, .active-page (tái sử dụng cấu trúc cho nhiều thành phần)
+4. Selector con cháu (Descendant selector): nav a, table th (định vị chính xác thẻ nằm bên trong một khối)
+5. Selector giả (Pseudo-class selector): .nav-link:hover, tr:nth-child(even), tr:hover (tạo hiệu ứng tương tác động)
+
+# Bài B2 — Kết quả thực nghiệm Box Model Lab
+
+# Phần 1 — Chứng minh content-box và border-box
+Sau khi chạy kiểm tra trực tiếp trên công cụ DevTools (tab Computed), kích thước thực tế hiển thị của hai hộp được ghi nhận như sau:
+ Hộp 1 (áp dụng content-box): chiều rộng thực tế hiển thị trên trình duyệt = 350px (đo từ DevTools)
+ Hộp 2 (áp dụng border-box): chiều rộng thực tế hiển thị trên trình duyệt = 300px (đo từ DevTools)
+
+Giải thích sự khác biệt: Với thuộc tính content-box mặc định, chiều rộng thực tế sẽ bằng thông số width cộng thêm với phần padding và border hai bên (300 + 20 + 20 + 5 + 5 = 350px). Ngược lại, khi chuyển sang border-box, trình duyệt sẽ tự động bóp nhỏ không gian chứa nội dung bên trong lại để đảm bảo toàn bộ khung viền bên ngoài của hộp cố định đúng bằng kích thước width ban đầu là 300px.
+
+## Phần 2 — Báo cáo tính toán hệ thống Layout 3 cột
+Khi không sử dụng thuộc tính border-box, tổng chiều rộng của hệ thống sẽ bị phình to vượt mức cho phép do cộng dồn padding của các cột: 
+Tổng kích thước = (250 + 15 + 15) + (500 + 20 + 20) + (250 + 15 + 15) = 280 + 540 + 280 = 1100px (vượt quá 100px so với container 1000px khiến các cột bị vỡ trận, đẩy xuống hàng dưới).
+Giải pháp xử lý triệt để là áp dụng border-box cho cả 3 cột, lúc này kích thước thực tế của từng cột sẽ giữ nguyên theo đúng cấu hình (250px + 500px + 250px = 1000px), giúp bố cục nằm vừa vặn trên một hàng ngang.
+
+# Bài B3 — Specificity Battle Báo cáo độ ưu tiên
+
+# 1 Danh sách 10 quy tắc CSS xếp chồng theo thứ tự độ ưu tiên từ thấp đến cao:
+ Quy tắc 1: * { color: gray; } -> Điểm số độ ưu tiên: (0, 0, 0)
+ Quy tắc 2: p { color: silver; } -> Điểm số độ ưu tiên: (0, 0, 1)
+ Quy tắc 3: p.text { color: maroon; } -> Điểm số độ ưu tiên: (0, 1, 1)
+ Quy tắc 4: .text { color: purple; } -> Điểm số độ ưu tiên: (0, 1, 0)
+ Quy tắc 5: .highlight { color: fuchsia; } -> Điểm số độ ưu tiên: (0, 1, 0)
+ Quy tắc 6: .text.highlight { color: green; } -> Điểm số độ ưu tiên: (0, 2, 0)
+ Quy tắc 7: p.text.highlight { color: lime; } -> Điểm số độ ưu tiên: (0, 2, 1)
+ Quy tắc 8: #demo { color: olive; } -> Điểm số độ ưu tiên: (1, 0, 0)
+ Quy tắc 9: p#demo { color: yellow; } -> Điểm số độ ưu tiên: (1, 0, 1)
+ Quy tắc 10: p#demo.text.highlight { color: navy; } -> Điểm số độ ưu tiên: (1, 2, 1)
+
+# 2 Kết quả hiển thị màu sắc cuối cùng
+ Phần tử văn bản cuối cùng trên màn hình sẽ hiển thị màu xanh hải quân (navy)
+ Giải thích lý do: Quy tắc số 10 sở hữu bộ selector chi tiết nhất kết hợp giữa ID, hai Class và thẻ phần tử, đem lại trọng số điểm số cao nhất là (1, 2, 1). Do đó nó hoàn toàn áp đảo các quy tắc tính điểm còn lại để hiển thị màu sắc này.
+
+# 3 Thử nghiệm thay đổi thứ tự các quy tắc trong file CSS
+Khi ta tiến hành thay đổi xáo trộn thứ tự đứng trước sau của các quy tắc trong file CSS, màu sắc hiển thị của phần tử hoàn toàn không bị thay đổi.
+Giải thích: Trình duyệt web luôn ưu tiên so sánh dựa trên điểm số trọng số Specificity trước tiên chứ không dựa vào thứ tự dòng lệnh. Do quy tắc số 10 vẫn giữ nguyên điểm số cao nhất nên cho dù đảo nó lên đầu file hay giữa file thì nó vẫn giành chiến thắng. Thứ tự dòng lệnh xếp sau chỉ có tác dụng khi hai quy tắc có điểm số độ ưu tiên bằng nhau hoàn toàn.
