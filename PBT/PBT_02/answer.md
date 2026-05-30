@@ -67,3 +67,50 @@ Với ảnh biểu đồ doanh thu Q1/2026, dòng alt cần tóm tắt được 
 
 Cách 1 (chỉ dùng thẻ img độc lập) được áp dụng khi bức ảnh đó chỉ đóng vai trò là một thành phần đồ họa nhỏ, mang tính chất trang trí hoặc bổ trợ nằm ngay trong dòng chữ của đoạn văn mà không cần tiêu đề giải thích đi kèm. Ví dụ thực tế là các icon hình giỏ hàng trên thanh công cụ hoặc hình ảnh avatar đại diện nhỏ của người dùng ở góc trang web.
 Cách 2 (dùng khối figure bọc ngoài img và figcaption) được chọn khi bức ảnh đó là một nội dung quan trọng, đứng độc lập và bắt buộc phải có một dòng chú thích rõ ràng ở ngay bên dưới để người đọc hiểu được ý nghĩa. Ví dụ thực tế là khung hiển thị ảnh chi tiết của sản phẩm có kèm tên máy và giá tiền ở ngay dưới ảnh, hoặc các hình ảnh sơ đồ minh họa từng bước hướng dẫn người dùng cách kích hoạt ví điện tử.
+
+
+# PHẦN C — PHÂN TÍCH & SUY LUẬN
+# Câu C1 — Debug Form
+Dưới đây là danh sách 8 lỗi được phát hiện trong đoạn mã nguồn biểu mẫu cũ cùng với giải pháp khắc phục chi tiết
+
+Lỗi 1: Dòng 2 — Thẻ nhập liệu "Tên" viết chữ thô bên ngoài, không có thẻ label bọc hoặc gắn thuộc tính liên kết for, vi phạm nghiêm trọng quy chuẩn tiếp cận
+Sửa: <label for="name">Tên:</label> <input type="text" id="name" name="name" required placeholder="Nhập họ và tên">
+
+Lỗi 2: Dòng 4 — Ô nhập "Email" hoàn toàn không có nhãn hiển thị hoặc thẻ danh nghĩa, lạm dụng thuộc tính placeholder để thay thế nhãn điều hướng
+Sửa: <label for="email">Email:</label> <input type="email" id="email" name="email" required placeholder="Email của bạn">
+
+Lỗi 3: Dòng 6 — Ô nhập dữ liệu mật khẩu thứ nhất thiếu nhãn định danh và thiếu cấu hình độ dài tối thiểu an toàn minlength
+Sửa: <label for="password">Mật khẩu:</label> <input type="password" id="password" name="password" minlength="8" required placeholder="Nhập mật khẩu">
+
+Lỗi 4: Dòng 7 — Ô xác nhận lại mật khẩu dùng trùng kiểu dữ liệu nhưng thiếu tên name và nhãn định danh để phân biệt với ô mật khẩu chính
+Sửa: <label for="confirm_password">Nhập lại mật khẩu:</label> <input type="password" id="confirm_password" name="confirm_password" minlength="8" required placeholder="Nhập lại mật khẩu">
+
+Lỗi 5: Dòng 9 — Ô nhập liệu "Phone" sử dụng sai kiểu dữ liệu hệ thống type="text" thay vì type="tel" và thiếu bộ lọc định dạng kiểm tra pattern
+Sửa: <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Nhập số điện thoại 10 số">
+
+Lỗi 6: Dòng 11 — Thẻ lựa chọn danh sách select không được đặt tên và không có nhãn liên kết hỗ trợ cho phần mềm đọc màn hình
+Sửa: <label for="city">Thành phố:</label> <select id="city" name="city" required><option value="">-- Chọn thành phố --</option><option value="hn">Hà Nội</option><option value="hcm">TP.HCM</option></select>
+
+Lỗi 7: Dòng 16 — Thẻ label của ô điều khoản viết trống rỗng bên ngoài, không chứa thuộc tính liên kết và thiếu thành phần tương tác chọn input type="checkbox"
+Sửa: <input type="checkbox" id="terms" name="terms" required> <label for="terms">Tôi đồng ý điều khoản</label>
+
+Lỗi 8: Dòng 19 — Nút gửi dữ liệu sử dụng thẻ cũ input type="submit" thay vì dùng thẻ thế hệ mới button type="submit" linh hoạt hơn theo thực tế làm việc
+Sửa: <button type="submit">Gửi dữ liệu</button>
+
+# Câu C2 — Thiết kế chiến lược Validation
+1 Biểu thức chính quy cho các trường dữ liệu
+Mã CMND/CCCD đúng 12 chữ số: pattern="[0-9]{12}"
+Số tài khoản ngân hàng từ 10 đến 15 chữ số: pattern="[0-9]{10,15}"
+Mã PIN đúng 6 chữ số và không hiển thị ký tự: type="password" pattern="[0-9]{6}" inputmode="numeric"
+
+2 Đánh giá tính an toàn của HTML5 Validation đối với hệ thống ngân hàng số
+HTML5 validation hoàn toàn không đủ an toàn cho một ứng dụng mang tính chất bảo mật cao như ngân bank. Các thuộc tính kiểm tra của HTML5 chỉ hoạt động như một lớp bảo vệ vòng ngoài trên giao diện người dùng. Lớp bảo vệ này cực kỳ dễ bị vô hiệu hóa hoặc vượt qua bởi bất kỳ ai có kiến thức cơ bản về công nghệ bằng cách tắt tính năng JavaScript trên trình duyệt, sửa mã nguồn trực tiếp qua công cụ Inspect F12, hoặc gửi các gói tin dữ liệu giả mạo bằng công cụ như Postman lên thẳng máy chủ.
+
+3 Ba loại validation phức tạp mà HTML5 không thể làm được (Bắt buộc dùng JavaScript)
+Đối chiếu chéo dữ liệu thời gian thực: Kiểm tra xem ô xác nhận mật khẩu có trùng khớp 100% với ô mật khẩu đã nhập trước đó hay không.
+Kiểm tra tính logic của dữ liệu: Ví dụ như tính toán xem ngày sinh của người đăng ký mở tài khoản ngân hàng đã đủ 18 tuổi trở lên hay chưa dựa vào mốc thời gian thực tế hiện tại.
+Xác thực bất đồng bộ với cơ sở dữ liệu: Gửi yêu cầu ngầm xuống máy chủ để kiểm tra xem số điện thoại hoặc email mà người dùng vừa gõ đã tồn tại trong hệ thống ngân hàng hay chưa để đưa ra cảnh báo trùng lặp ngay tại chỗ.
+
+4 Hai rủi ro bảo mật nghiêm trọng nếu chỉ kiểm tra dữ liệu trên Frontend
+Nguy cơ tấn công tiêm mã độc: Kẻ tấn công có thể dễ dàng sửa công cụ F12 để xóa bỏ thuộc tính lọc dữ liệu, sau đó chèn các chuỗi câu lệnh phá hoại vào các ô nhập liệu nhằm chiếm quyền kiểm soát hệ thống dữ liệu cốt lõi bên dưới máy chủ.
+Rác dữ liệu và phá hoại hệ thống: Việc thiếu bộ lọc chặn dữ liệu ở Backend khiến máy chủ sẵn sàng tiếp nhận những thông tin sai lệch, định dạng rác gây lỗi logic tính toán, hoặc bị kẻ xấu chạy các đoạn script tự động gửi hàng nghìn đơn đăng ký rác liên tục làm nghẽn băng thông và sập hệ thống.
