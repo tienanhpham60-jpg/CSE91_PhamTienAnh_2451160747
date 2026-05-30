@@ -186,11 +186,12 @@ Lỗi 12: Dòng 42 — Thẻ đoạn văn <p> trong khu vực chân trang footer
     <p>&copy; 2026 Shopee/Tiki Clone. All rights reserved.</p>
 </footer>
 
-Câu C2 — So sánh & Tranh luận về Semantic HTML
-Quan điểm "chỉ cần dùng thẻ <div> rồi thêm class" nghe thì có vẻ nhanh ở giai đoạn đầu, nhưng xét về mặt kỹ thuật lâu dài thì đó là một tư duy sai lầm lớn.
+# Câu C2 — So sánh & Tranh luận về Semantic HTML
 
-Thứ nhất, về mặt SEO, các công cụ tìm kiếm như Google dựa vào thẻ semantic để hiểu cấu trúc trang web. Một con bot không thể biết <div class="title"> quan trọng hơn <div class="footer"> vì đối với nó, mọi thẻ <div> đều có giá trị bằng không. Việc dùng đúng thẻ <h1>, <main>, <article> giúp trang web có "bộ khung" rõ ràng, từ đó được xếp hạng từ khóa tốt hơn trên Google. Thứ hai là vấn đề Accessibility (khả năng tiếp cận). Trình đọc màn hình (Screen Reader) của người khiếm thị sẽ đọc dựa trên các cột mốc thẻ ngữ nghĩa. Nếu toàn bộ trang chỉ là thẻ <div>, người khiếm thị sẽ hoàn toàn bị "lạc lối" vì phần mềm không thể phân biệt nổi đâu là thanh menu, đâu là nội dung bài viết để đọc cho họ nghe.
+Quan điểm "chỉ cần dùng thẻ `<div>` rồi thêm class" nghe thì có vẻ nhanh ở giai đoạn đầu, nhưng xét về mặt kỹ thuật lâu dài thì đó là một tư duy sai lầm lớn.
 
-Một ví dụ cụ thể: Nếu ta đổi cụm nút mua hàng từ <div class="btn" onclick="...">Mua ngay</div> thành thẻ chuẩn <button type="button">Mua ngay</button>, trang web sẽ tự động kích hoạt khả năng nhấn Enter/Space để chọn nút mà không cần lập trình viên phải viết thêm một đống code JavaScript bắt sự kiện bàn phím cho người dùng lướt web bằng phím tab.
+Thứ nhất, về mặt SEO, các công cụ tìm kiếm như Google dựa vào thẻ semantic để hiểu cấu trúc trang web. Một con bot không thể biết `<div class="title">` quan trọng hơn `<div class="footer">` vì đối với nó, mọi thẻ `<div>` đều có giá trị ngữ nghĩa bằng không. Việc dùng đúng thẻ `<h1>`, `<main>`, `<article>` giúp trang web có "bộ khung" rõ ràng, từ đó được xếp hạng từ khóa tốt hơn trên Google. Thứ hai là vấn đề Accessibility (khả năng tiếp cận). Trình đọc màn hình (Screen Reader) của người khiếm thị sẽ đọc dựa trên các cột mốc thẻ ngữ nghĩa. Nếu toàn bộ trang chỉ là thẻ `<div>`, người khiếm thị sẽ hoàn toàn bị "lạc lối" vì phần mềm không thể phân biệt nổi đâu là thanh menu, đâu là nội dung bài viết để đọc cho họ nghe.
 
-Tuy nhiên, thẻ <div> không hoàn toàn bị loại bỏ. Nó vẫn là lựa chọn hoàn hảo nhất trong các trường hợp mang tính chất thuần trang trí, làm layout hoặc bọc các khối để viết CSS (ví dụ như tạo một lớp màng bọc mờ overlay, tạo khung bo tròn bao ngoài để căn lề flexbox, chia layout 2 cột). Ở những vị trí đó, cái ta cần là một chiếc hộp trống rỗng không mang bất kỳ ngữ nghĩa nào, và đó chính là lúc thẻ <div> phát huy tác dụng
+Một ví dụ cụ thể: Nếu ta đổi cụm nút mua hàng từ `<div class="btn" onclick="...">Mua ngay</div>` thành thẻ chuẩn `<button type="button">Mua ngay</button>`, trang web sẽ tự động kích hoạt khả năng nhấn Enter/Space để chọn nút mà không cần lập trình viên phải viết thêm một đống code JavaScript bắt sự kiện bàn phím cho người dùng lướt web bằng phím tab.
+
+Tuy nhiên, thẻ `<div>` không hoàn toàn bị loại bỏ. Nó vẫn là lựa chọn hoàn hảo nhất trong các trường hợp mang tính chất thuần trang trí, làm layout hoặc bọc các khối để viết CSS (ví dụ như tạo một lớp màng bọc mờ overlay, tạo khung bo tròn bao ngoài để căn lề flexbox, chia layout 2 cột). Ở những vị trí đó, cái ta cần là một chiếc hộp trống rỗng không mang bất kỳ ngữ nghĩa nào, và đó chính là lúc thẻ `<div>` phát huy tác dụng.
