@@ -103,3 +103,74 @@ Sơ đồ:
 [I1][I2][I3]
 [I4][I5][I6]
 [I7][  ][  ]
+
+
+# Câu C1:
+
+Flexbox và Grid: Khi nào dùng gì?
+Navigation bar ngang
+Lựa chọn: Flexbox.
+Lý do: Đây là layout 1 chiều, Flexbox mạnh nhất ở việc căn chỉnh các phần tử trên cùng một hàng bằng justify-content và align-items.
+
+Lưới ảnh Instagram
+Lựa chọn: Grid.
+Lý do: Layout 2 chiều. Grid giúp định nghĩa lưới đều nhau và tự động xử lý các dòng mới khi có thêm ảnh mà không cần tính toán nhiều.
+
+Layout blog (Main + Sidebar)
+Lựa chọn: Grid.
+Lý do: Grid giúp chia khung trang web một cách chính xác với tỉ lệ cố định và khoảng cách giữa các cột được kiểm soát dễ dàng.
+
+Footer 4 cột
+Lựa chọn: Grid.
+Lý do: Grid tạo ra các cột đều nhau rất nhanh chóng. Nếu nội dung mỗi cột khác nhau nhiều, Flexbox cũng là một lựa chọn tốt.
+
+Card sản phẩm (nút dính đáy)
+Lựa chọn: Flexbox.
+Lý do: Khi dùng flex-direction: column, thuộc tính margin-top: auto trên nút bấm sẽ tự động đẩy nó xuống đáy card, giúp các nút luôn thẳng hàng nhau.
+
+Quy tắc sử dụng
+Grid: Dùng cho bố cục tổng thể (chia trang thành các khu vực lớn).
+
+Flexbox: Dùng cho các thành phần nhỏ (căn chỉnh nội dung bên trong một khối).
+
+Kết hợp: Dùng Grid để chia khung trang, sau đó dùng Flexbox để dàn trải nội dung bên trong các khung đó.
+
+# Câu C2:
+Lỗi 1: Cards không đều chiều cao
+
+Nguyên nhân: Các card có nội dung dài ngắn khác nhau, nhưng vì không được thiết lập flex-direction: column và margin-top: auto, nút "Mua" sẽ nằm ngay sau phần text, khiến nó bị nhảy vị trí tùy theo độ dài của tiêu đề.
+
+Cách sửa:
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+.btn {
+    margin-top: auto;
+}
+Lỗi 2: Item không nằm giữa container
+
+Nguyên nhân: Bạn đã dùng display: flex nhưng thiếu các thuộc tính căn chỉnh dọc và ngang. Mặc định align-items là stretch và justify-content là flex-start.
+
+Cách sửa:
+
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+}
+Lỗi 3: Sidebar bị co lại
+
+Nguyên nhân: Mặc định của Flexbox là flex-shrink: 1, nên khi nội dung bên cạnh quá dài, trình duyệt sẽ tự ép sidebar co lại để nhường chỗ.
+
+Cách sửa:
+
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0; 
+}
