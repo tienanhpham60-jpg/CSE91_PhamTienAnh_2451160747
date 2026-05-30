@@ -1,0 +1,31 @@
+.grid-container {
+    display: grid;
+    gap: 20px;
+    height: 100vh;
+    
+    grid-template-areas: 
+        "header header header"
+        "hero hero hero"
+        "sidebar main ads"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto auto 1fr auto;
+}
+
+
+.header { grid-area: header; background: #333; color: white; padding: 20px; }
+.hero { grid-area: hero; background: #ddd; height: 150px; display: grid; }
+.sidebar { grid-area: sidebar; background: #f4f4f4; padding: 10px; }
+.main-content { 
+    grid-area: main; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px; 
+}
+.ads { grid-area: ads; background: #f4f4f4; padding: 10px; }
+.footer { grid-area: footer; background: #333; color: white; padding: 20px; }
+
+
+.featured-card { grid-column: span 2; background: orange; }
+
+.product-card { border: 1px solid #ccc; height: 150px; }
