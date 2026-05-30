@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra tính hợp lệ dữ liệu biểu mẫu</title>
+</head>
+<body>
+
+    <main>
+        <h1>Trang thực nghiệm các thuộc tính HTML5 Validation</h1>
+        
+        <form action="#" method="GET">
+            
+            <p>
+                <label for="test1">Trường hợp 1 (Để trống ô bắt buộc):</label><br>
+                <input type="text" id="test1" required value="">
+            </p>
+
+            <p>
+                <label for="test2">Trường hợp 2 (Nhập sai định dạng thư điện tử):</label><br>
+                <input type="email" id="test2" value="abc">
+            </p>
+
+            <p>
+                <label for="test3">Trường hợp 3 (Nhập số vượt quá hạn mức tối đa):</label><br>
+                <input type="number" id="test3" min="1" max="10" value="15">
+            </p>
+
+            <p>
+                <label for="test4">Trường hợp 4 (Nhập sai biểu thức chính quy quy định):</label><br>
+                <input type="text" id="test4" pattern="[0-9]{10}" value="abc123">
+            </p>
+
+            <p>
+                <label for="test5">Trường hợp 5 (Độ dài chuỗi ký tự quá ngắn):</label><br>
+                <input type="password" id="test5" minlength="8" value="123">
+            </p>
+
+            <br>
+            <button type="submit">Bấm vào đây để Submit form</button>
+
+        </form>
+    </main>
+
+</body>
+</html>
