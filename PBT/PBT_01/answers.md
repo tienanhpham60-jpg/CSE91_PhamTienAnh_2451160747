@@ -33,6 +33,7 @@ Lỗi 4: Khối bọc sản phẩm dùng <div class="product"> -> Nên đổi th
 Lỗi 5: Phần chân trang dùng <div class="footer"> -> Cần sửa thành thẻ <footer>.
 
 3. Code HTML sau khi sửa lại:
+```html
 <header>
     <div class="logo">ShopTLU</div>
     <nav>
