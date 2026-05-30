@@ -1,0 +1,27 @@
+
+* { color: black; }
+
+
+p { color: gray; }
+
+
+.text { color: brown; }
+
+
+.text.highlight { color: orange; }
+
+
+p[id="demo"] { color: blue; }
+
+
+p.text { color: purple; }
+
+
+#demo { color: green; }
+
+
+#demo.text { color: yellowgreen; }
+
+
+#demo p { color: pink; } 
+

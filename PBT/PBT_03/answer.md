@@ -165,3 +165,38 @@ Giải pháp xử lý triệt để là áp dụng border-box cho cả 3 cột, 
 # 3 Thử nghiệm thay đổi thứ tự các quy tắc trong file CSS
 Khi ta tiến hành thay đổi xáo trộn thứ tự đứng trước sau của các quy tắc trong file CSS, màu sắc hiển thị của phần tử hoàn toàn không bị thay đổi.
 Giải thích: Trình duyệt web luôn ưu tiên so sánh dựa trên điểm số trọng số Specificity trước tiên chứ không dựa vào thứ tự dòng lệnh. Do quy tắc số 10 vẫn giữ nguyên điểm số cao nhất nên cho dù đảo nó lên đầu file hay giữa file thì nó vẫn giành chiến thắng. Thứ tự dòng lệnh xếp sau chỉ có tác dụng khi hai quy tắc có điểm số độ ưu tiên bằng nhau hoàn toàn.
+
+
+Danh sách 10 Rules và Specificity Score:
+
+* : (0,0,0,0)
+
+p : (0,0,0,1)
+
+.text : (0,0,1,0)
+
+.text.highlight : (0,0,2,0)
+
+p[id="demo"] : (0,0,1,1)
+
+p.text : (0,0,1,1)
+
+#demo : (0,1,0,0)
+
+#demo.text : (0,1,1,0)
+
+#demo p : (0,1,0,1)
+
+Inline Style : (1,0,0,0)
+
+Kết quả:
+
+Phần tử hiển thị màu gì? Nếu bạn dùng inline style, nó sẽ màu đỏ. Nếu không có inline style, nó sẽ lấy màu của rule có độ đặc hiệu cao nhất (theo ví dụ trên là màu vàng xanh yellowgreen của #demo.text).
+
+Tại sao? Trình duyệt ưu tiên rule có độ đặc hiệu (specificity) cao hơn. Specificity giống như một hệ thống "cấp bậc", dù bạn viết rule đó ở dòng đầu tiên hay cuối cùng của file CSS, rule có cấp bậc cao hơn vẫn sẽ thắng.
+
+Thay đổi thứ tự rules:
+
+Kết quả có đổi không? KHÔNG đổi (ngoại trừ trường hợp 2 rule có cùng độ đặc hiệu).
+
+Giải thích: Nếu hai rule có cùng độ đặc hiệu (ví dụ .text và .highlight), lúc này trình duyệt mới áp dụng quy tắc "cái nào đứng sau cùng sẽ đè lên cái trước". Nhưng với các rule có độ đặc hiệu khác nhau, trình duyệt luôn chọn rule "mạnh nhất" bất kể nó nằm ở vị trí nào trong file CSS.
