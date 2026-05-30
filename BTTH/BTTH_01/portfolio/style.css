@@ -1,0 +1,232 @@
+
+:root {
+    --color-primary: #6366f1;    
+    --color-secondary: #8b5cf6;  
+    --color-dark: #1e293b;       
+    --color-light: #f8fafc;      
+    --color-text: #334155;       
+    --font-main: 'Segoe UI', sans-serif;
+    --transition-fast: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background-color: var(--color-light);
+}
+
+body {
+    min-height: 100vh;
+}
+
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--color-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    letter-spacing: -0.5px;
+}
+
+
+nav a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 2rem;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color var(--transition-fast);
+}
+
+nav a:hover {
+    color: var(--color-primary);
+}
+
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-fast);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+.menu-checkbox, .hamburger-btn {
+    display: none;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+    /* Background Gradient Linear */
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--color-primary);
+    filter: blur(150px);
+    opacity: 0.15;
+    top: -10%;
+    right: -5%;
+    border-radius: 50%;
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+
+.cta-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.cta-button:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+
+
+
+@media (max-width: 1023px) {
+    .hero h1 {
+        font-size: 2.75rem;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    
+    .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hamburger-btn span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--color-dark);
+        border-radius: 2px;
+        transition: all var(--transition-fast);
+    }
+
+    
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-checkbox:checked ~ .hamburger-btn span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 70%;
+        height: 100vh;
+        background-color: var(--color-light);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right var(--transition-fast);
+    }
+
+    nav a {
+        margin: 1.5rem 0;
+        font-size: 1.25rem;
+    }
+
+    
+    .menu-checkbox:checked ~ nav {
+        right: 0;
+    }
+}
