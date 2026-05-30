@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán đơn hàng</title>
+</head>
+<body>
+
+    <main>
+        <h1>Chi tiết đặt hàng và thanh toán</h1>
+
+        <section class="search-section">
+            <label for="product-search">Tìm nhanh sản phẩm khác:</label>
+            <input type="search" id="product-search" name="product_search" list="product-suggestions" placeholder="Gõ tên sản phẩm cần tìm...">
+            
+            <datalist id="product-suggestions">
+                <option value="iPhone 16 Pro Max"></option>
+                <option value="Ốp lưng MagSafe trong suốt"></option>
+                <option value="Củ sạc nhanh USB-C 20W"></option>
+                <option value="Tai nghe AirPods Pro 2"></option>
+                <option value="Đồng hồ Apple Watch Series 9"></option>
+            </datalist>
+        </section>
+
+        <br>
+
+        <form action="#" method="POST">
+
+            <fieldset>
+                <legend>Thông tin giỏ hàng</legend>
+                
+                <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Điện thoại iPhone 16 128GB</td>
+                            <td>22.990.000đ</td>
+                            <td>1</td>
+                            <td>22.990.000đ</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Củ sạc nhanh USB-C 20W</td>
+                            <td>590.000đ</td>
+                            <td>2</td>
+                            <td>1.180.000đ</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Ốp lưng MagSafe Silicone</td>
+                            <td>1.290.000đ</td>
+                            <td>1</td>
+                            <td>1.290.000đ</td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th colspan="4" style="text-align: right;">Tổng cộng chi phí đơn hàng:</th>
+                            <td>
+                                <output name="total_price">25.460.000đ</output>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <p>
+                    <label for="loyalty-points">Điểm thưởng tích lũy dự kiến nhận được từ đơn này (80/100 điểm):</label><br>
+                    <meter id="loyalty-points" min="0" max="100" low="30" high="70" optimum="90" value="80">80 điểm</meter>
+                </p>
+            </fieldset>
+
+            <br>
+
+            <fieldset>
+                <legend>Hình thức thanh toán</legend>
+
+                <p>
+                    <span>Chọn phương thức thanh toán:</span><br>
+                    
+                    <input type="radio" id="payment_cod" name="payment_method" value="cod" checked>
+                    <label for="payment_cod">Thanh toán khi nhận hàng (COD)</label><br>
+
+                    <input type="radio" id="payment_bank" name="payment_method" value="bank">
+                    <label for="payment_bank">Chuyển khoản ngân hàng qua mã QR</label><br>
+
+                    <input type="radio" id="payment_wallet" name="payment_method" value="wallet">
+                    <label for="payment_wallet">Ví điện tử (Momo / ZaloPay)</label>
+                </p>
+
+                <p>
+                    <label for="coupon">Mã giảm giá (Nếu có):</label>
+                    <input type="text" id="coupon" name="coupon_code" pattern="SALE[0-9]{4}" placeholder="Ví dụ: SALE2026">
+                </p>
+
+                <p>
+                    <label for="note">Ghi chú đơn hàng:</label><br>
+                    <textarea id="note" name="order_note" rows="3" style="width: 100%;" placeholder="Nhập lời nhắn gửi đến người bán hoặc shipper (không bắt buộc)..."></textarea>
+                </p>
+            </fieldset>
+
+            <br>
+
+            <fieldset>
+                <legend>Thông tin vận chuyển và giao nhận</legend>
+
+                <p>
+                    <label for="delivery_date">Ngày giao hàng mong muốn:</label>
+                    <input type="date" id="delivery_date" name="delivery_date" min="2026-06-01" required>
+                </p>
+
+                <p>
+                    <label for="delivery_time">Khung giờ giao hàng lý tưởng:</label>
+                    <select id="delivery_time" name="delivery_time">
+                        <option value="morning">Sáng (8h00 - 12h00)</option>
+                        <option value="afternoon">Chiều (14h00 - 18h00)</option>
+                        <option value="evening">Tối (18h00 - 21h00)</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="shipping_range">Thời gian giao hàng tối đa chấp nhận (Từ 1 đến 7 ngày):</label><br>
+                    <input type="range" id="shipping_range" name="shipping_range" min="1" max="7" step="1" value="3">
+                    <span style="font-size: 14px; color: #666;">(Kéo thanh trượt để chọn số ngày mong muốn)</span>
+                </p>
+            </fieldset>
+
+            <br>
+
+            <p>
+                <button type="submit" aria-label="Xác nhận đặt hàng">Hoàn tất đặt hàng</button>
+            </p>
+
+        </form>
+    </main>
+
+</body>
+</html>
