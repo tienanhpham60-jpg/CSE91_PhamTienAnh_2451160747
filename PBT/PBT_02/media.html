@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu sản phẩm Multimedia</title>
+</head>
+<body>
+
+    <main>
+        <header>
+            <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="80" height="80" rx="15" fill="#1e293b" />
+                    <circle cx="50" cy="50" r="25" fill="#f59e0b" />
+                </svg>
+                <span style="font-size: 24px; font-weight: bold; color: #1e293b;">TechZone</span>
+            </div>
+            <h1>Không gian trải nghiệm sản phẩm công nghệ</h1>
+        </header>
+
+        <hr>
+
+        <section class="gallery-section">
+            <h2>Hình ảnh thực tế sản phẩm</h2>
+            
+            <div class="gallery-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <figure style="margin: 0; max-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" 
+                         alt="Điện thoại thông minh màn hình tràn viền màu bạc" 
+                         loading="lazy" 
+                         style="max-width: 100%; height: auto; border-radius: 8px;">
+                    <figcaption style="font-style: italic; color: #555; margin-top: 5px;">Góc nhìn trực diện siêu phẩm màn hình vô cực</figcaption>
+                </figure>
+
+                <figure style="margin: 0; max-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500" 
+                         alt="Đồng hồ thông minh mặt tròn dây đeo silicon màu đen" 
+                         loading="lazy" 
+                         style="max-width: 100%; height: auto; border-radius: 8px;">
+                    <figcaption style="font-style: italic; color: #555; margin-top: 5px;">Đồng hồ theo dõi sức khỏe thế hệ mới</figcaption>
+                </figure>
+
+                <figure style="margin: 0; max-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" 
+                         alt="Tai nghe chụp tai không dây màu vàng đồng đặt trên mặt bàn" 
+                         loading="lazy" 
+                         style="max-width: 100%; height: auto; border-radius: 8px;">
+                    <figcaption style="font-style: italic; color: #555; margin-top: 5px;">Tai nghe chống ồn chủ động cao cấp</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="video-section">
+            <h2>Video đánh giá và trải nghiệm</h2>
+
+            <div style="margin-bottom: 30px;">
+                <h3>1. Video giới thiệu tính năng độc quyền (Video hệ thống)</h3>
+                <video controls poster="https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=800" style="max-width: 100%; width: 640px; height: auto;">
+                    <source src="movie.mp4" type="video/mp4">
+                    <source src="movie.webm" type="video/webm">
+                    Trình duyệt của bạn không hỗ trợ hiển thị thẻ video trực tiếp.
+                </video>
+            </div>
+
+            <div>
+                <h3>2. Trực tiếp từ sự kiện ra mắt toàn cầu (Nhúng YouTube iframe)</h3>
+                <iframe width="640" height="360" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Sự kiện ra mắt sản phẩm công nghệ" 
+                        style="max-width: 100%; border: none;" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="audio-section">
+            <h2>Không gian âm thanh thư giãn</h2>
+            <p>Bật nhạc nền dưới đây để tăng trải nghiệm khi xem sản phẩm:</p>
+            <audio controls>
+                <source src="ambient-bgm.mp3" type="audio/mpeg">
+                <source src="ambient-bgm.ogg" type="audio/ogg">
+                Trình duyệt của bạn không hỗ trợ hiển thị thẻ audio phát nhạc.
+            </audio>
+        </section>
+
+    </main>
+
+</body>
+</html>
