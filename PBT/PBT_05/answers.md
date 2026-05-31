@@ -59,7 +59,7 @@ Trình duyệt chỉ hiểu CSS thuần. File .scss là file nguồn, bắt bu�
 
 
 
-# Câu C1  – Phân tích Responsive Design
+# Câu C1 
 
 # Website được chọn
 
@@ -143,3 +143,230 @@ YouTube (https://www.youtube.com)
 - Khoảng cách giữa các thành phần được tối ưu cho màn hình lớn.
 
 YouTube sử dụng Responsive Web Design để thích nghi với nhiều kích thước màn hình khác nhau. Trên Mobile, giao diện được tối giản với ít thành phần hiển thị hơn và nội dung được sắp xếp thành một cột. Trên Tablet, số lượng cột nội dung tăng lên và thanh điều hướng được mở rộng hơn. Trên Desktop, giao diện hiển thị đầy đủ các thành phần như sidebar, thanh tìm kiếm và nhiều cột video hơn. Qua DevTools có thể thấy website sử dụng các media queries để thay đổi bố cục, kích thước và cách hiển thị nội dung theo từng breakpoint.
+
+
+# Câu C2 
+
+# 1. Wireframe Mobile (< 768px)
+
+```text
++------------------+
+| LOGO     CALL ☎  |
++------------------+
+
++------------------+
+|                  |
+|   HERO IMAGE     |
+|                  |
++------------------+
+
++------------------+
+|  FOOD IMAGE 1    |
++------------------+
+|  FOOD IMAGE 2    |
++------------------+
+|  FOOD IMAGE 3    |
++------------------+
+|  FOOD IMAGE 4    |
++------------------+
+|  FOOD IMAGE 5    |
++------------------+
+|  FOOD IMAGE 6    |
++------------------+
+
++------------------+
+| BOOKING FORM     |
+| Date             |
+| Time             |
+| Guests           |
+| Notes            |
+| Submit           |
++------------------+
+
++------------------+
+| GOOGLE MAPS      |
++------------------+
+
++------------------+
+| FOOTER           |
++------------------+
+```
+
+### Phân tích Mobile
+
+* Hero image chiếm toàn bộ chiều rộng màn hình.
+* Grid ảnh món ăn hiển thị 1 cột.
+* Form đặt bàn nằm bên dưới gallery ảnh.
+* Google Maps nằm dưới form.
+* Không sử dụng sidebar.
+* Có thể thu gọn số điện thoại thành icon gọi để tiết kiệm không gian.
+
+---
+
+## 2. Wireframe Tablet (768px – 1023px)
+
+```text
++--------------------------------------+
+| LOGO                    CALL ☎       |
++--------------------------------------+
+
++--------------------------------------+
+|              HERO IMAGE              |
++--------------------------------------+
+
++---------------+---------------+
+| FOOD 1        | FOOD 2        |
++---------------+---------------+
+| FOOD 3        | FOOD 4        |
++---------------+---------------+
+| FOOD 5        | FOOD 6        |
++---------------+---------------+
+
++--------------------------------------+
+| BOOKING FORM                         |
++--------------------------------------+
+
++--------------------------------------+
+| GOOGLE MAPS                          |
++--------------------------------------+
+
++--------------------------------------+
+| FOOTER                               |
++--------------------------------------+
+```
+
+### Phân tích Tablet
+
+* Grid ảnh hiển thị 2 cột.
+* Form vẫn nằm phía trên bản đồ.
+* Google Maps chiếm toàn bộ chiều ngang.
+* Không cần sidebar.
+* Nội dung được giãn rộng hơn Mobile.
+
+---
+
+## 3. Wireframe Desktop (>= 1024px)
+
+```text
++------------------------------------------------------+
+| LOGO                             CALL ☎              |
++------------------------------------------------------+
+
++------------------------------------------------------+
+|                    HERO IMAGE                        |
++------------------------------------------------------+
+
++-----------+-----------+-----------+
+| FOOD 1    | FOOD 2    | FOOD 3    |
++-----------+-----------+-----------+
+| FOOD 4    | FOOD 5    | FOOD 6    |
++-----------+-----------+-----------+
+
++----------------------+------------------------------+
+| BOOKING FORM         | GOOGLE MAPS                  |
+| Date                 |                              |
+| Time                 |                              |
+| Guests               |                              |
+| Notes                |                              |
+| Submit               |                              |
++----------------------+------------------------------+
+
++------------------------------------------------------+
+| FOOTER                                               |
++------------------------------------------------------+
+```
+
+### Phân tích Desktop
+
+* Layout sử dụng 2 cột ở khu vực Form + Maps.
+* Gallery ảnh hiển thị 3 cột.
+* Form đặt bàn bên trái.
+* Google Maps bên phải.
+* Không cần sidebar vì số lượng nội dung không nhiều.
+* Tận dụng tối đa chiều rộng màn hình lớn.
+
+---
+
+# 4. CSS Skeleton (Mobile First)
+
+```css
+/* Mobile First */
+
+.container{
+    display:grid;
+    gap:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.hero{
+    width:100%;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+}
+
+.booking-form{
+    width:100%;
+}
+
+.map{
+    width:100%;
+}
+
+.footer{
+    text-align:center;
+}
+
+/* Tablet */
+
+@media (min-width:768px){
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* Desktop */
+
+@media (min-width:1024px){
+
+    .gallery{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .reservation-section{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:24px;
+    }
+}
+```
+
+## Giải thích Responsive Strategy
+
+### Mobile
+
+* Gallery: 1 cột.
+* Form nằm dưới gallery.
+* Maps nằm dưới form.
+* Ưu tiên trải nghiệm trên điện thoại.
+
+### Tablet
+
+* Gallery: 2 cột.
+* Nội dung mở rộng theo chiều ngang.
+* Form và Maps vẫn xếp dọc để dễ đọc.
+
+### Desktop
+
+* Gallery: 3 cột.
+* Form và Maps chia thành 2 cột.
+* Tận dụng tối đa không gian màn hình lớn.
