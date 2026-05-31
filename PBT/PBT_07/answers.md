@@ -828,3 +828,145 @@ const html = `
 Vì những lý do trên, trong JavaScript hiện đại nên ưu tiên sử dụng Template Literals thay cho cách nối chuỗi truyền thống.
 
 
+# C1
+Lỗi 1: Thiếu dấu ;
+
+return "Phần trăm giảm không hợp lệ"
+
+Nên viết:
+
+return "Phần trăm giảm không hợp lệ";
+
+JavaScript có thể tự thêm dấu ; nhưng không nên phụ thuộc vào cơ chế đó.
+
+Lỗi 2: Không kiểm tra kiểu dữ liệu đầu vào
+
+const gia = tinhGiaGiamGia("100000", 20);
+
+"100000" là kiểu string, không phải number.
+
+Nên kiểm tra:
+
+if (typeof giaBan !== "number" || typeof phanTramGiam !== "number") {
+    return "Dữ liệu không hợp lệ";
+}
+
+Lỗi 3: Dùng phép gán thay vì phép so sánh
+
+if (giaSauGiam = 0)
+
+Dấu = là phép gán giá trị.
+
+Nên sửa thành:
+
+if (giaSauGiam === 0)
+
+Lỗi 4: Làm thay đổi giá trị của biến
+
+Trong câu lệnh:
+
+if (giaSauGiam = 0)
+
+giá trị của giaSauGiam bị gán thành 0.
+
+Điều này làm sai kết quả tính toán và là một lỗi logic nghiêm trọng.
+
+Lỗi 5: Dùng var trong vòng lặp kết hợp setTimeout
+
+for (var i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i);
+    }, 1000);
+}
+
+Kết quả thực tế:
+
+Item 5
+Item 5
+Item 5
+Item 5
+Item 5
+
+Nguyên nhân:
+
+var có phạm vi function scope. Khi setTimeout chạy thì vòng lặp đã kết thúc và giá trị của i đã là 5.
+
+Cách sửa:
+
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i);
+    }, 1000);
+}
+
+Kết quả:
+
+Item 0
+Item 1
+Item 2
+Item 3
+Item 4
+
+Lỗi 6: Xử lý kết quả trả về chưa hợp lý
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+console.log("Giá: " + gia2);
+
+Hàm trả về:
+
+Phần trăm giảm không hợp lệ
+
+Nên kết quả sẽ là:
+
+Giá: Phần trăm giảm không hợp lệ
+
+Nên kiểm tra trước khi in hoặc in trực tiếp thông báo lỗi.
+
+Code sau khi sửa:
+
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+
+    if (
+        typeof giaBan !== "number" ||
+        typeof phanTramGiam !== "number"
+    ) {
+        return "Dữ liệu không hợp lệ";
+    }
+
+    if (phanTramGiam < 0 || phanTramGiam > 100) {
+        return "Phần trăm giảm không hợp lệ";
+    }
+
+    let giamGia = giaBan * phanTramGiam / 100;
+    let giaSauGiam = giaBan - giamGia;
+
+    if (giaSauGiam === 0) {
+        console.log("Sản phẩm miễn phí!");
+    }
+
+    return giaSauGiam;
+}
+
+const gia = tinhGiaGiamGia(100000, 20);
+console.log("Giá sau giảm: " + gia + "đ");
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+console.log(gia2);
+
+for (let i = 0; i < 5; i++) {
+    setTimeout(function () {
+        console.log("Item " + i);
+    }, 1000);
+}
+
+Tổng số lỗi tìm được:
+
+Thiếu dấu ;
+Không kiểm tra kiểu dữ liệu đầu vào
+Dùng = thay vì ===
+Làm thay đổi giá trị của biến khi kiểm tra điều kiện
+Dùng var trong vòng lặp với setTimeout
+Xử lý kết quả lỗi trả về chưa hợp lý
+
+Lỗi "ẩn" mà đề yêu cầu giải thích là lỗi dùng var trong vòng lặp kết hợp với setTimeout. Khi callback được thực thi thì vòng lặp đã kết thúc nên tất cả đều in ra Item 5. Dùng let sẽ tạo biến riêng cho mỗi lần lặp và khắc phục được vấn đề này.
+
