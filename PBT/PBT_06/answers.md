@@ -252,3 +252,237 @@ Kết luận:
 * `.container-fluid` luôn rộng 100%.
 * `.container-md` chỉ bắt đầu giới hạn chiều rộng từ breakpoint md trở lên.
 
+
+
+# Câu C1 
+
+Bootstrap được xây dựng bằng SASS nên các màu sắc, kích thước và nhiều thuộc tính khác được quản lý thông qua các biến (variables). Nếu muốn đổi màu `$primary` từ màu xanh mặc định sang `#E63946`, cần thực hiện các bước sau:
+
+Đầu tiên cần cài đặt công cụ SASS và tải mã nguồn Bootstrap. Có thể cài SASS bằng Node.js:
+
+```bash
+npm install -g sass
+```
+
+Sau đó cài Bootstrap:
+
+```bash
+npm install bootstrap
+```
+
+Tiếp theo tạo một file SCSS riêng, ví dụ `custom.scss`.
+
+Trong file này, khai báo lại biến `$primary` trước khi import Bootstrap:
+
+```scss
+$primary: #E63946;
+
+@import "bootstrap/scss/bootstrap";
+```
+
+Sau đó biên dịch SCSS thành CSS:
+
+```bash
+sass custom.scss custom.css
+```
+
+File `custom.css` được tạo ra sẽ chứa toàn bộ Bootstrap với màu primary mới là `#E63946`.
+
+Tất cả các thành phần sử dụng màu primary như:
+
+ `.btn-primary`
+ `.bg-primary`
+ `.text-primary`
+ `.border-primary`
+ Các component liên quan
+
+sẽ tự động đổi sang màu mới.
+
+Không nên override trực tiếp:
+
+```css
+.btn-primary{
+    background: red;
+}
+```
+
+vì cách này chỉ thay đổi riêng nút `.btn-primary`.
+
+Các class khác như:
+
+```html
+bg-primary
+text-primary
+border-primary
+```
+
+vẫn sử dụng màu xanh mặc định, dẫn đến giao diện không đồng nhất.
+
+Ngoài ra, khi Bootstrap được cập nhật phiên bản mới, việc override thủ công nhiều class sẽ khó bảo trì và dễ phát sinh lỗi.
+
+Sử dụng SASS variables giúp:
+
+ Thay đổi màu sắc toàn bộ hệ thống chỉ ở một nơi.
+ Đảm bảo tính nhất quán của giao diện.
+ Dễ bảo trì và mở rộng.
+ Tận dụng đúng cơ chế tùy biến mà Bootstrap cung cấp.
+
+Vì vậy, khi cần thay đổi màu sắc hoặc theme của Bootstrap, nên chỉnh sửa SASS variables thay vì ghi đè trực tiếp các class CSS có sẵn.
+
+
+
+
+
+
+# Câu C2 
+
+Ví dụ CSS thuần để tạo Navbar Responsive:
+
+```html
+<nav class="navbar">
+    <div class="logo">MyShop</div>
+
+    <ul class="menu">
+        <li>Home</li>
+        <li>Products</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+```
+
+```css
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#333;
+    color:white;
+    padding:16px;
+}
+
+.menu{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+@media (max-width:768px){
+    .menu{
+        display:none;
+    }
+}
+```
+
+Ví dụ Product Card:
+
+```html
+<div class="card">
+    <img src="product.jpg" alt="">
+    <h3>Product Name</h3>
+    <p>Product Description</p>
+    <button>Buy Now</button>
+</div>
+```
+
+```css
+.card{
+    width:300px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:16px;
+}
+
+.card img{
+    width:100%;
+}
+
+.card button{
+    background:#E63946;
+    color:white;
+    border:none;
+    padding:10px 20px;
+}
+```
+
+Trong Bootstrap, các thành phần tương đương chỉ cần:
+
+```html
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    ...
+</nav>
+
+<div class="card">
+    <img class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">Product</h5>
+        <button class="btn btn-primary">
+            Buy Now
+        </button>
+    </div>
+</div>
+```
+
+So sánh:
+
+1. Số dòng CSS cần viết
+
+CSS thuần:
+
+* Navbar: khoảng 20–30 dòng CSS.
+* Product Card: khoảng 15–20 dòng CSS.
+* Tổng cộng khoảng 40–50 dòng CSS.
+
+Bootstrap:
+
+* Gần như không cần viết CSS.
+* Chỉ sử dụng các class có sẵn của Bootstrap.
+
+2. Thời gian phát triển
+
+CSS thuần:
+
+* Mất nhiều thời gian hơn.
+* Phải tự viết layout, responsive, spacing và styling.
+
+Bootstrap:
+
+* Phát triển rất nhanh.
+* Có thể tạo giao diện hoàn chỉnh chỉ với các class có sẵn.
+
+3. Khả năng tùy biến
+
+CSS thuần:
+
+* Tùy biến gần như không giới hạn.
+* Có thể thiết kế giao diện độc đáo theo ý muốn.
+
+Bootstrap:
+
+* Tùy biến được nhưng phụ thuộc vào hệ thống class của framework.
+* Nếu chỉnh sửa quá nhiều có thể làm mất lợi thế của Bootstrap.
+
+4. Khi nào nên dùng Bootstrap?
+
+Nên dùng Bootstrap khi:
+
+* Cần phát triển nhanh.
+* Làm website quản trị (Dashboard).
+* Làm landing page đơn giản.
+* Prototype hoặc dự án học tập.
+* Nhóm phát triển muốn thống nhất giao diện.
+
+5. Khi nào không nên dùng Bootstrap?
+
+Không nên dùng Bootstrap khi:
+
+* Thiết kế yêu cầu giao diện độc quyền, khác biệt hoàn toàn.
+* Website có hệ thống design riêng.
+* Dự án cần tối ưu kích thước CSS tối đa.
+* Muốn kiểm soát hoàn toàn giao diện và hiệu năng.
+
+Kết luận:
+
+Bootstrap giúp giảm đáng kể thời gian phát triển nhờ các component và utility classes có sẵn. Tuy nhiên, CSS thuần cho khả năng tùy biến cao hơn và phù hợp với các dự án yêu cầu thiết kế riêng biệt. Việc lựa chọn Bootstrap hay CSS thuần phụ thuộc vào mục tiêu, thời gian và yêu cầu của dự án.
+
+
+
