@@ -113,3 +113,55 @@ function renderProjects(dataToRender = projects) {
 
 renderProjects();
 updateStatistics();
+
+
+projectForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const title = inputTitle.value.trim();
+    const student = inputStudent.value.trim();
+    const email = inputEmail.value.trim();
+    const phone = inputPhone.value.trim();
+    const mentor = inputMentor.value;
+    const hiddenId = inputIdHidden.value;
+
+    if (hiddenId === "") {
+        const newProject = {
+            id: Date.now().toString(),
+            title: title,
+            student: student,
+            email: email,
+            phone: phone,
+            mentor: mentor,
+            status: "Đang làm"
+        };
+
+        projects.push(newProject);
+        showToast("Thêm đồ án mới thành công!");
+    } else {
+        // Luồng cập nhật sẽ xử lý ở bước sau
+    }
+
+    saveProjects();
+    renderProjects();
+    updateStatistics();
+    closeModal();
+});
+
+function handleFilter() {
+    const keyword = filterInput.value.toLowerCase().trim();
+    
+    const filteredProjects = projects.filter(project => 
+        project.student.toLowerCase().includes(keyword) || 
+        project.title.toLowerCase().includes(keyword)
+    );
+    
+    renderProjects(filteredProjects);
+}
+
+btnFilter.addEventListener('click', handleFilter);
+filterInput.addEventListener('keyup', function (e) {
+    if (e.key === 'Enter') {
+        handleFilter();
+    }
+});
