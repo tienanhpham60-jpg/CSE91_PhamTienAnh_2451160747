@@ -1,172 +1,54 @@
-root {
-    --primary-color: #4f46e5;
-    --success-color: #10b981;
-    --danger-color: #ef4444;
-    --dark-color: #1e293b;
-    --light-bg: #f8fafc;
-    --border-color: #e2e8f0;
+
+const btnOpenForm = document.getElementById('btn-open-form');
+const btnCloseModal = document.getElementById('btn-close-modal');
+const btnCancelForm = document.getElementById('btn-cancel-form');
+const formModal = document.getElementById('form-modal');
+const studentForm = document.getElementById('student-form');
+const modalTitle = document.getElementById('modal-title');
+
+
+const inputIdHidden = document.getElementById('student-id-hidden');
+const inputCode = document.getElementById('student-code');
+const inputName = document.getElementById('student-name');
+const inputDob = document.getElementById('student-dob');
+const inputClass = document.getElementById('student-class');
+const inputGrade = document.getElementById('student-grade');
+const inputEmail = document.getElementById('student-email');
+
+
+const studentTableBody = document.getElementById('student-table-body');
+const totalStudentsEl = document.getElementById('total-students');
+const averageScoreEl = document.getElementById('average-score');
+const toastNotification = document.getElementById('toast-notification');
+
+
+
+
+function openModal(mode = 'add') {
+    formModal.classList.remove('hidden'); 
+    if (mode === 'add') {
+        modalTitle.innerText = "Thêm Sinh Viên Mới";
+        studentForm.reset();
+        inputIdHidden.value = ""; 
+    } else if (mode === 'edit') {
+        modalTitle.innerText = "Cập Nhật Thông Tin Sinh Viên";
+    }
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: var(--light-bg);
-    color: var(--dark-color);
-    padding: 2rem 1rem;
-}
-
-.app-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-/* Thống kê */
-.statistics-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.stat-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    text-align: center;
-    border: 1px solid var(--border-color);
-}
-
-.stat-card h3 {
-    font-size: 1rem;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-}
-
-.stat-card p {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-/* Khối chức năng */
-.action-bar {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.btn {
-    padding: 0.625rem 1.25rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-primary { background: var(--primary-color); color: white; }
-.btn-secondary { background: #e2e8f0; color: var(--dark-color); }
-.btn-success { background: var(--success-color); color: white; }
-.btn-danger { background: var(--danger-color); color: white; padding: 0.4rem 0.8rem; font-size: 0.85rem;}
-.btn-edit { background: #f59e0b; color: white; padding: 0.4rem 0.8rem; font-size: 0.85rem; margin-right: 0.5rem;}
-
-.btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-/* Bảng hiển thị */
-.table-container {
-    background: white;
-    border-radius: 10px;
-    overflow-x: auto;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-th, td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-th {
-    background-color: #f1f5f9;
-    font-weight: 600;
-}
-
-/* Modal Popup ẩn */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    transition: opacity 0.3s ease;
-}
-
-.modal-box {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.close-x {
-    background: none; border: none; font-size: 1.75rem; cursor: pointer; color: #94a3b8;
-}
-
-.form-group {
-    margin-bottom: 1.25rem;
-}
-
-.form-group label {
-    display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.9rem;
-}
-
-.form-group input {
-    width: 100%; padding: 0.6rem 0.8rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem;
-}
-
-.modal-actions {
-    display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;
+// Hàm đóng Modal form
+function closeModal() {
+    formModal.classList.add('hidden'); 
+    studentForm.reset();
 }
 
 
-.toast {
-    position: fixed; top: 20px; right: 20px;
-    background: var(--dark-color); color: white;
-    padding: 0.8rem 1.5rem; border-radius: 6px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
+btnOpenForm.addEventListener('click', () => openModal('add'));
+btnCloseModal.addEventListener('click', closeModal);
+btnCancelForm.addEventListener('click', closeModal);
 
 
-.hidden {
-    display: none !important;
-}
+formModal.addEventListener('click', (e) => {
+    if (e.target === formModal) {
+        closeModal();
+    }
+});
