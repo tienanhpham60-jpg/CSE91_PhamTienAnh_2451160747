@@ -175,6 +175,19 @@ studentForm.addEventListener('submit', function (e) {
         showToast("Thêm mới sinh viên thành công!");
         
     } else {
+        const studentIndex = students.findIndex(s => s.id === hiddenId);
+        if (studentIndex !== -1) {
+            students[studentIndex] = {
+                id: hiddenId,
+                code: code,
+                name: name,
+                dob: dob,
+                className: className,
+                grade: grade,
+                email: email
+            };
+            showToast("Cập nhật thông tin sinh viên thành công!");
+        }
        
         
     }
@@ -200,4 +213,19 @@ studentTableBody.addEventListener('click', function (e) {
             showToast("Xóa sinh viên thành công!");
         }
     }
+    if (e.target.classList.contains('btn-edit')) {
+        const studentId = e.target.getAttribute('data-id');
+        const student = students.find(s => s.id === studentId);
+        
+        if (student) {
+            inputIdHidden.value = student.id;
+            inputCode.value = student.code;
+            inputName.value = student.name;
+            inputDob.value = student.dob;
+            inputClass.value = student.className;
+            inputGrade.value = student.grade;
+            inputEmail.value = student.email;
+            
+            openModal('edit');
+        }
 });
