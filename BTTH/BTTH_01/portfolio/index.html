@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">  <link rel="stylesheet" href="css/about.css">  <link rel="stylesheet" href="css/skills.css"> </head>
+    <link rel="stylesheet" href="css/style.css">  
+    <link rel="stylesheet" href="css/about.css">  
+    <link rel="stylesheet" href="css/skills.css"> 
+    <link rel="stylesheet" href="css/portfolio.css"> 
+</head>
 <body>
 
     <header>
@@ -35,7 +39,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="https://via.placeholder.com/400x400" alt="Profile Photo">
+                    <img src="https://picsum.photos/400" alt="Profile Photo">
                 </div>
                 <div class="about-content">
                     <h2>About Me</h2>
@@ -80,6 +84,113 @@
             </div>
         </div>
     </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2>My Portfolio</h2>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Web</button>
+                <button class="filter-btn">Mobile</button>
+                <button class="filter-btn">Design</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                
+                <div class="portfolio-item" data-category="web">
+                    <a href="#lightbox-1" class="lightbox-link">
+                        <img src="https://picsum.photos/id/1/400/300" alt="Project 1">
+                        <div class="portfolio-overlay">
+                            <h3>E-Commerce Website</h3>
+                            <p>React + Node.js</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <a href="#lightbox-2" class="lightbox-link">
+                        <img src="https://picsum.photos/id/2/400/300" alt="Project 2">
+                        <div class="portfolio-overlay">
+                            <h3>Fitness Tracking App</h3>
+                            <p>React Native</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <a href="#lightbox-3" class="lightbox-link">
+                        <img src="https://picsum.photos/id/3/400/300" alt="Project 3">
+                        <div class="portfolio-overlay">
+                            <h3>Social Media Platform</h3>
+                            <p>Vue.js + Firebase</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-item" data-category="design">
+                    <a href="#lightbox-4" class="lightbox-link">
+                        <img src="https://picsum.photos/id/4/400/300" alt="Project 4">
+                        <div class="portfolio-overlay">
+                            <h3>Branding Identity</h3>
+                            <p>Adobe Illustrator</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <a href="#lightbox-5" class="lightbox-link">
+                        <img src="https://picsum.photos/id/5/400/300" alt="Project 5">
+                        <div class="portfolio-overlay">
+                            <h3>Portfolio Template</h3>
+                            <p>HTML5 + Sass</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <a href="#lightbox-6" class="lightbox-link">
+                        <img src="https://picsum.photos/id/6/400/300" alt="Project 6">
+                        <div class="portfolio-overlay">
+                            <h3>Food Delivery UI</h3>
+                            <p>Figma to Flutter</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox-1" class="lightbox">
+        <img src="https://picsum.photos/id/1/800/600" alt="Project 1 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-2" class="lightbox">
+        <img src="https://picsum.photos/id/2/800/600" alt="Project 2 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-3" class="lightbox">
+        <img src="https://picsum.photos/id/3/800/600" alt="Project 3 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-4" class="lightbox">
+        <img src="https://picsum.photos/id/4/800/600" alt="Project 4 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-5" class="lightbox">
+        <img src="https://picsum.photos/id/5/800/600" alt="Project 5 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-6" class="lightbox">
+        <img src="https://picsum.photos/id/6/800/600" alt="Project 6 Large">
+        <a href="#portfolio" class="lightbox-close">&times;</a>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
