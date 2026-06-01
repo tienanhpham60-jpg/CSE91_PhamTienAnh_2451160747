@@ -129,6 +129,17 @@ taskForm.addEventListener('submit', function (e) {
         tasks.push(newTask);
         showToast("Thêm công việc mới thành công!");
     } else {
+        const taskIndex = tasks.findIndex(t => t.id === hiddenId);
+        if (taskIndex !== -1) {
+            tasks[taskIndex] = {
+                ...tasks[taskIndex],
+                title: title,
+                desc: desc,
+                deadline: deadline,
+                priority: priority
+            };
+            showToast("Cập nhật công việc thành công!");
+        }
       
     }
 
@@ -163,6 +174,21 @@ taskListContainer.addEventListener('click', function (e) {
             renderTasks();
             updateTaskSummary();
             showToast(task.completed ? "Đã đánh dấu hoàn thành!" : "Đã chuyển về chưa hoàn thành!");
+        }
+    }
+
+    if (e.target.classList.contains('btn-edit')) {
+        const taskId = e.target.getAttribute('data-id');
+        const task = tasks.find(t => t.id === taskId);
+        
+        if (task) {
+            inputIdHidden.value = task.id;
+            inputTitle.value = task.title;
+            inputDesc.value = task.desc;
+            inputDeadline.value = task.deadline;
+            inputPriority.value = task.priority;
+            
+            openModal('edit');
         }
     }
 });
