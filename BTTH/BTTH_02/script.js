@@ -144,3 +144,19 @@ searchInput.addEventListener('input', function (e) {
     
     renderDevices(filteredDevices);
 });
+
+
+deviceGrid.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-delete')) {
+        const deviceId = e.target.getAttribute('data-id');
+        const confirmDelete = confirm("Bạn có chắc chắn muốn xóa thiết bị này không?");
+        
+        if (confirmDelete) {
+            devices = devices.filter(device => device.id !== deviceId);
+            
+            saveDevices();
+            renderDevices();
+            showToast("Xóa thiết bị thành công!");
+        }
+    }
+});
