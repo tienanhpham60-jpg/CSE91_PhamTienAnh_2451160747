@@ -185,3 +185,19 @@ studentForm.addEventListener('submit', function (e) {
     updateStatistics();   
     closeModal();         
 });
+
+studentTableBody.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-delete')) {
+        const studentId = e.target.getAttribute('data-id');
+        const confirmDelete = confirm("Bạn có chắc chắn muốn xóa sinh viên này không?");
+        
+        if (confirmDelete) {
+            students = students.filter(student => student.id !== studentId);
+            
+            saveStudents();
+            renderStudents();
+            updateStatistics();
+            showToast("Xóa sinh viên thành công!");
+        }
+    }
+});
