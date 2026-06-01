@@ -104,3 +104,36 @@ function renderTasks() {
 
 renderTasks();
 updateTaskSummary();
+
+
+
+taskForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const title = inputTitle.value.trim();
+    const desc = inputDesc.value.trim();
+    const deadline = inputDeadline.value;
+    const priority = inputPriority.value;
+    const hiddenId = inputIdHidden.value;
+
+    if (hiddenId === "") {
+        const newTask = {
+            id: Date.now().toString(),
+            title: title,
+            desc: desc,
+            deadline: deadline,
+            priority: priority,
+            completed: false
+        };
+
+        tasks.push(newTask);
+        showToast("Thêm công việc mới thành công!");
+    } else {
+      
+    }
+
+    saveTasks();
+    renderTasks();
+    updateTaskSummary();
+    closeModal();
+});
