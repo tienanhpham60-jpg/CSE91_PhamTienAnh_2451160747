@@ -114,7 +114,6 @@ function renderProjects(dataToRender = projects) {
 renderProjects();
 updateStatistics();
 
-
 projectForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -139,7 +138,18 @@ projectForm.addEventListener('submit', function (e) {
         projects.push(newProject);
         showToast("Thêm đồ án mới thành công!");
     } else {
-        // Luồng cập nhật sẽ xử lý ở bước sau
+        const projectIndex = projects.findIndex(p => p.id === hiddenId);
+        if (projectIndex !== -1) {
+            projects[projectIndex] = {
+                ...projects[projectIndex],
+                title: title,
+                student: student,
+                email: email,
+                phone: phone,
+                mentor: mentor
+            };
+            showToast("Cập nhật thông tin đồ án thành công!");
+        }
     }
 
     saveProjects();
@@ -163,5 +173,37 @@ btnFilter.addEventListener('click', handleFilter);
 filterInput.addEventListener('keyup', function (e) {
     if (e.key === 'Enter') {
         handleFilter();
+    }
+});
+
+projectTableBody.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-delete')) {
+        const projectId = e.target.getAttribute('data-id');
+        const confirmDelete = confirm("Bạn có chắc chắn muốn xóa đồ án này không?");
+        
+        if (confirmDelete) {
+            projects = projects.filter(project => project.id !== projectId);
+            saveProjects();
+            renderProjects();
+            updateStatistics();
+            showToast("Xóa đồ án thành công!");
+        }
+    }
+
+    if (e.target.classList.contains('btn-edit')) {
+        const projectId = e.target.getAttribute('data-id');
+        const project = projects.find(p => p.id === projectId);
+        
+        if (project) {
+            inputIdHidden.value = project.id;
+            inputTitle.value = project.title;
+            inputStudent.value = project.student;
+            inputEmail.value = project.email;
+            inputPhone.value = project.phone;
+            inputPassword.value = "";
+            inputMentor.value = project.mentor;
+            
+            openModal('edit');
+        }
     }
 });
