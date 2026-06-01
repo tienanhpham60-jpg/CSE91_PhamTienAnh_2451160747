@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Thiết bị Máy tính</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>Quản lý Thiết bị Máy tính</h1>
+        <div class="lang-switch">
+            <button class="btn-lang active">Tiếng Việt</button>
+            <button class="btn-lang">English</button>
+        </div>
+    </header>
+
+    <div id="toast-notification" class="toast hidden"></div>
+
+    <main class="container">
+        <section class="control-bar">
+            <button id="btn-open-form" class="btn btn-add">Thêm Thiết bị</button>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm kiếm thiết bị...">
+            </div>
+        </section>
+
+        <section id="device-grid" class="device-grid">
+            </section>
+    </main>
+
+    <div id="form-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <button id="btn-close-modal" class="close-x">&times;</button>
+            <h2 id="modal-title">Thêm Thiết bị</h2>
+            
+            <form id="device-form">
+                <input type="hidden" id="device-id-hidden">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="device-name">Tên</label>
+                        <input type="text" id="device-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-serial">Số Serial</label>
+                        <input type="text" id="device-serial" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="device-type">Loại</label>
+                        <select id="device-type" required>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Máy bàn">Máy bàn</option>
+                            <option value="Máy in">Máy in</option>
+                            <option value="Màn hình">Màn hình</option>
+                            <option value="Máy chủ">Máy chủ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-date">Ngày Mua</label>
+                        <input type="date" id="device-date" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="device-warranty">Bảo Hành</label>
+                        <select id="device-warranty" required>
+                            <option value="1 năm">1 năm</option>
+                            <option value="2 năm">2 năm</option>
+                            <option value="3 năm">3 năm</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-email">Email Quản Lý</label>
+                        <input type="email" id="device-email" required>
+                    </div>
+                </div>
+
+                <div class="form-group max-width-half">
+                    <label for="device-status">Trạng Thái</label>
+                    <select id="device-status" required>
+                        <option value="Hoạt động">Hoạt động</option>
+                        <option value="Không hoạt động">Không hoạt động</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-form" class="btn btn-cancel">Hủy</button>
+                    <button type="submit" class="btn btn-save">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
