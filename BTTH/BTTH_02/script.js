@@ -96,3 +96,51 @@ function renderDevices(dataToRender = devices) {
 }
 
 renderDevices();
+
+
+deviceForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = inputName.value.trim();
+    const serial = inputSerial.value.trim();
+    const type = inputType.value;
+    const date = inputDate.value;
+    const warranty = inputWarranty.value;
+    const email = inputEmail.value.trim();
+    const status = inputStatus.value;
+    const hiddenId = inputIdHidden.value;
+
+    if (hiddenId === "") {
+        const newDevice = {
+            id: Date.now().toString(),
+            name: name,
+            serial: serial,
+            type: type,
+            date: date,
+            warranty: warranty,
+            email: email,
+            status: status
+        };
+
+        devices.push(newDevice);
+        showToast("Thêm thiết bị mới thành công!");
+    } else {
+        // Luồng cập nhật sẽ xử lý ở bước sau
+    }
+
+    saveDevices();
+    renderDevices();
+    closeModal();
+});
+
+searchInput.addEventListener('input', function (e) {
+    const keyword = e.target.value.toLowerCase().trim();
+    
+    const filteredDevices = devices.filter(device => 
+        device.name.toLowerCase().includes(keyword) || 
+        device.serial.toLowerCase().includes(keyword) ||
+        device.type.toLowerCase().includes(keyword)
+    );
+    
+    renderDevices(filteredDevices);
+});
