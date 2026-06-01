@@ -137,3 +137,32 @@ taskForm.addEventListener('submit', function (e) {
     updateTaskSummary();
     closeModal();
 });
+
+
+taskListContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-danger')) {
+        const taskId = e.target.getAttribute('data-id');
+        const confirmDelete = confirm("Bạn có chắc chắn muốn xóa công việc này không?");
+        
+        if (confirmDelete) {
+            tasks = tasks.filter(task => task.id !== taskId);
+            saveTasks();
+            renderTasks();
+            updateTaskSummary();
+            showToast("Xóa công việc thành công!");
+        }
+    }
+
+    if (e.target.classList.contains('btn-toggle')) {
+        const taskId = e.target.getAttribute('data-id');
+        const task = tasks.find(t => t.id === taskId);
+        
+        if (task) {
+            task.completed = !task.completed;
+            saveTasks();
+            renderTasks();
+            updateTaskSummary();
+            showToast(task.completed ? "Đã đánh dấu hoàn thành!" : "Đã chuyển về chưa hoàn thành!");
+        }
+    }
+});
