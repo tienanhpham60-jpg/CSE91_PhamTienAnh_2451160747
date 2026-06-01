@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đồ Án Sinh Viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Đồ Án Sinh Viên</div>
+        <div class="nav-links">
+            <a href="#" class="active">TrangChủ</a>
+            <a href="#">ĐồÁn</a>
+            <a href="#">ThốngKê</a>
+        </div>
+        <div class="nav-lang">EN | VI</div>
+    </nav>
+
+    <div class="welcome-banner">
+        <h2>Chào mừng đến với Đồ án tốt nghiệp</h2>
+    </div>
+
+    <div id="toast-notification" class="toast hidden"></div>
+
+    <main class="container">
+        <section class="statistics-grid">
+            <div class="stat-card">
+                <h3>Tổng số Đồ án</h3>
+                <p id="total-projects">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Hoàn thành</h3>
+                <p id="completed-projects">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Đang làm</h3>
+                <p id="pending-projects">0</p>
+            </div>
+        </section>
+
+        <section class="control-bar">
+            <div class="filter-box">
+                <input type="text" id="filter-input" placeholder="Filter by student or title...">
+                <button id="btn-filter" class="btn btn-filter">Lọc</button>
+            </div>
+            <button id="btn-open-form" class="btn btn-add">Thêm Đồ án</button>
+        </section>
+
+        <section class="table-responsive">
+            <table class="project-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tiêu đề</th>
+                        <th>Sinh viên</th>
+                        <th>Email</th>
+                        <th>Điện thoại</th>
+                        <th>Giảng viên HD</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="project-table-body">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <div id="form-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <button id="btn-close-modal" class="close-x">&times;</button>
+            <h2 id="modal-title">Thêm/Sửa Đồ án</h2>
+            
+            <form id="project-form">
+                <input type="hidden" id="project-id-hidden">
+
+                <div class="form-group">
+                    <label for="project-title">Tiêu đề Đồ án</label>
+                    <input type="text" id="project-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="student-name">Tên Sinh viên</label>
+                    <input type="text" id="student-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="student-email">Email</label>
+                    <input type="email" id="student-email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="student-phone">Điện thoại</label>
+                    <input type="text" id="student-phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="student-password">Mật khẩu</label>
+                    <input type="password" id="student-password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-mentor">Giảng viên HD</label>
+                    <select id="project-mentor" required>
+                        <option value="TS. Trần B">TS. Trần B</option>
+                        <option value="ThS. Lê D">ThS. Lê D</option>
+                        <option value="TS. Hoàng F">TS. Hoàng F</option>
+                        <option value="ThS. Nguyễn H">ThS. Nguyễn H</option>
+                        <option value="TS. Phan J">TS. Phan J</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-form" class="btn btn-close">Đóng</button>
+                    <button type="submit" class="btn btn-save">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
