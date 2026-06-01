@@ -125,7 +125,21 @@ deviceForm.addEventListener('submit', function (e) {
         devices.push(newDevice);
         showToast("Thêm thiết bị mới thành công!");
     } else {
-        // Luồng cập nhật sẽ xử lý ở bước sau
+        const deviceIndex = devices.findIndex(d => d.id === hiddenId);
+        if (deviceIndex !== -1) {
+            devices[deviceIndex] = {
+                id: hiddenId,
+                name: name,
+                serial: serial,
+                type: type,
+                date: date,
+                warranty: warranty,
+                email: email,
+                status: status
+            };
+            showToast("Cập nhật thiết bị thành công!");
+        }
+        
     }
 
     saveDevices();
@@ -153,10 +167,27 @@ deviceGrid.addEventListener('click', function (e) {
         
         if (confirmDelete) {
             devices = devices.filter(device => device.id !== deviceId);
-            
             saveDevices();
             renderDevices();
             showToast("Xóa thiết bị thành công!");
+        }
+    }
+
+    if (e.target.classList.contains('btn-edit')) {
+        const deviceId = e.target.getAttribute('data-id');
+        const device = devices.find(d => d.id === deviceId);
+        
+        if (device) {
+            inputIdHidden.value = device.id;
+            inputName.value = device.name;
+            inputSerial.value = device.serial;
+            inputType.value = device.type;
+            inputDate.value = device.date;
+            inputWarranty.value = device.warranty;
+            inputEmail.value = device.email;
+            inputStatus.value = device.status;
+            
+            openModal('edit');
         }
     }
 });
