@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Shortcuts & Accessibility</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="tip-box">
+        <p>⌨️ <strong>Phím tắt:</strong> <code>Ctrl + K</code> để mở Command Palette | <code>← / →</code> Đổi ảnh | <code>1-4</code> Nhảy ảnh | <code>Space</code> Slide | <code>Esc</code> Đóng</p>
+    </div>
+
+    <main class="gallery-container">
+        <div class="viewer-box" id="viewer-box" aria-live="polite">
+            <img id="main-img" src="" alt="Hình ảnh hiển thị chính">
+            <div class="slideshow-status" id="slide-status">Slideshow: OFF</div>
+        </div>
+
+        <div class="thumbnails-grid" id="thumb-grid" role="tablist" aria-label="Danh sách ảnh mẫu">
+            </div>
+    </main>
+
+    <div id="command-modal" class="modal-mask hidden" role="dialog" aria-modal="true" aria-label="Hộp lệnh tìm kiếm">
+        <div class="palette-box">
+            <input type="text" id="palette-input" placeholder="Gõ lệnh cần tìm... (ví dụ: Go to, Play, Dark)" aria-label="Tìm kiếm lệnh">
+            <ul id="command-list" class="command-list" role="listbox">
+                </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
