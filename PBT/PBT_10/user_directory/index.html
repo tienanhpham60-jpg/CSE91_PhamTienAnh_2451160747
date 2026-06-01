@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>User Directory CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý User</h1>
+        <input type="text" id="search" placeholder="Tìm kiếm theo tên/email...">
+        <button id="addBtn">Thêm User Mới</button>
+        
+        <div id="loading" class="hidden">Đang tải...</div>
+        <div id="message"></div>
+        <table id="userTable">
+            <thead><tr><th>Tên</th><th>Email</th><th>Hành động</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
