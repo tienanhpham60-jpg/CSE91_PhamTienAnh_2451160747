@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Công Việc Cá Nhân - K66 BTTH03</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Ứng Dụng Quản Lý Công Việc</h1>
+            <div id="toast-notification" class="toast hidden"></div>
+        </header>
+
+        <section class="statistics-section">
+            <div class="stat-card">
+                <h3>Tổng số công việc</h3>
+                <p id="total-tasks">0</p>
+            </div>
+            <div class="stat-card text-success">
+                <h3>Đã hoàn thành</h3>
+                <p id="completed-tasks">0</p>
+            </div>
+            <div class="stat-card text-danger">
+                <h3>Chưa hoàn thành</h3>
+                <p id="pending-tasks">0</p>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="action-bar">
+                <button id="btn-open-form" class="btn btn-primary">+ Thêm công việc mới</button>
+            </div>
+
+            <div id="task-list-container" class="task-grid">
+                <div id="empty-state" class="empty-state">
+                    Chưa có công việc nào được tạo. Hãy lên kế hoạch ngay!
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="form-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 id="modal-title">Thêm Công Việc Mới</h2>
+                <button id="btn-close-modal" class="close-x">&times;</button>
+            </div>
+            
+            <form id="task-form">
+                <input type="hidden" id="task-id-hidden">
+
+                <div class="form-group">
+                    <label for="task-title">Tiêu đề công việc *</label>
+                    <input type="text" id="task-title" required placeholder="Nhập tên công việc">
+                </div>
+
+                <div class="form-group">
+                    <label for="task-desc">Mô tả ngắn *</label>
+                    <input type="text" id="task-desc" required placeholder="Mô tả chi tiết công việc">
+                </div>
+
+                <div class="form-group">
+                    <label for="task-deadline">Hạn hoàn thành *</label>
+                    <input type="date" id="task-deadline" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-priority">Mức ưu tiên *</label>
+                    <select id="task-priority" required>
+                        <option value="Cao">Cao</option>
+                        <option value="Trung bình" selected>Trung bình</option>
+                        <option value="Thấp">Thấp</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-form" class="btn btn-secondary">Hủy bỏ</button>
+                    <button type="submit" id="btn-submit-form" class="btn btn-success">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
